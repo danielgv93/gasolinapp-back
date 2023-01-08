@@ -4,8 +4,10 @@ import {catchError} from "./utils";
 import {useProvincias} from "./services/provincia.service";
 import {useEESS} from "./services/eess.service";
 
+const cors = require('cors');
 const app = express()
 
+app.use(cors())
 
 app.get("/api/provincias", (req, res) => {
     useProvincias()
