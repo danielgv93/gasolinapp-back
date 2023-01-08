@@ -14,6 +14,12 @@ app.get("/api/provincias", (req, res) => {
         .then((json) => res.send(json))
         .catch((err) => catchError(err, res))
 })
+app.get("/api/productos", (req, res) => {
+    fetch(`https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/ProductosPetroliferos/`)
+        .then(response => response.json())
+        .then((json) => res.send(json))
+        .catch((err) => catchError(err, res))
+})
 
 app.get("/api/provincias/:search", (req, res) => {
     const {search} = req.params
