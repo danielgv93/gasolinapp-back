@@ -38,7 +38,7 @@ app.get("/api/eess/:provincia/:producto", (req, res) => {
     useEESS(provincia, producto)
         .then((json: ApiResponseEESS) => {
             if (json.ResultadoConsulta !== "OK") {
-                return Promise.reject("No results for the parameters provided")
+                return Promise.reject(json.ResultadoConsulta ?? "No results for the parameters provided")
             }
             const eessArray = toEESSDto(json)
             const averagePrecio = eessArray
