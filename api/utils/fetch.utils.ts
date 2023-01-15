@@ -9,4 +9,4 @@ export const xmlToJson = (value: any): any => {
 export const catchError = (err: any, res: any) => res.status(500).send({"errorMessage": err})
 
 // @ts-ignore
-export const fetch = (url: RequestInfo, init?: RequestInit) =>  import("node-fetch").then(({ default: fetch }) => fetch(url, init));
+export const fetch = (url: RequestInfo, init?: any) =>  import("node-fetch").then(({ default: fetch }) => fetch(url, init));
