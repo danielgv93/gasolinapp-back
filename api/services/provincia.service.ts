@@ -1,5 +1,4 @@
-import fetch from "node-fetch";
-import {xmlToJson} from "../utils";
+import {fetch, xmlToJson} from "../utils";
 import {toProvinciaDto} from "../models/Provincia.model";
 import {ApiResponseProvincia} from "../models";
 
