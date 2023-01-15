@@ -1,6 +1,6 @@
 import express from 'express'
 import {ApiResponseEESS, toEESSDto} from "./models";
-import {catchError} from "./utils";
+import {catchError, fetch} from "./utils";
 import {useProvincias} from "./services/provincia.service";
 import {useEESS} from "./services/eess.service";
 
