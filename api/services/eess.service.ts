@@ -1,4 +1,5 @@
 import {xmlToJson} from "../utils";
+import fetch from "node-fetch";
 
 export const useEESS = (idProvincia: string, idProducto: string) => {
     const controller = new AbortController();
