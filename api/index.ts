@@ -6,6 +6,7 @@ import {useEESS} from "./services/eess.service";
 
 const cors = require('cors');
 const app = express()
+const PORT = process.env.PORT || 3030;
 
 app.use(cors())
 
@@ -55,4 +56,4 @@ app.use((req, res) => {
     res.status(404).send({"errorMessage": "api endpoint not found"})
 });
 
-app.listen(5000, () => console.log("Serve port at 5000"))
+app.listen(PORT, () => console.log("Serve port at 5000"))
