@@ -1,7 +1,7 @@
 import express from 'express'
 import {ApiResponseEESS, toEESSDto} from "./models";
-import {catchError, fetch} from "./utils";
-import {useProvincias} from "./services/provincia.service";
+import {ProvinciaDto} from "./models/Provincia.model";
+import {catchError, readFile} from "./utils";
 import {useEESS} from "./services/eess.service";
 
 const cors = require('cors');
@@ -11,25 +11,19 @@ const PORT = process.env.PORT || 3030;
 app.use(cors())
 
 app.get("/api/provincias", (req, res) => {
-    useProvincias()
-        .then((json) => res.send(json))
-        .catch((err) => catchError(err, res))
+    const provincias = readFile<ProvinciaDto[]>("api/db/provincias.json")
+    res.send(provincias)
 })
 app.get("/api/productos", (req, res) => {
-    fetch(`https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/ProductosPetroliferos/`)
-        .then(response => response.json())
-        .then((json) => res.send(json))
-        .catch((err) => catchError(err, res))
+    const productos = readFile<unknown[]>("api/db/productos.json");
+    res.send(productos)
 })
 
 app.get("/api/provincias/:search", (req, res) => {
     const {search} = req.params
-    useProvincias()
-        .then((json) => {
-            const privinciasFiltered = json.filter((provincia) => provincia.nombre.toLowerCase().includes(search.toLowerCase()));
-            res.send(privinciasFiltered)
-        })
-        .catch((err) => catchError(err, res))
+    const provinciasFiltered = readFile<ProvinciaDto[]>("api/db/provincias.json")
+        .filter((provincia) => provincia.nombre.toLowerCase().includes(search.toLowerCase()));
+    res.send(provinciasFiltered)
     }
 )
 
